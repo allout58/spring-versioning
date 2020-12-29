@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>versioning-example</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>service1</module>
+        <module>service2</module>
+        <module>service3</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Versions -->
+        <service1.version>1.1-SNAPSHOT</service1.version>
+        <service2.version>2.1-SNAPSHOT</service2.version>
+        <service3.version>3.1-SNAPSHOT</service3.version>
+
+        <!-- auto version related -->
+        <service.version>0</service.version>
+        <version.update.enable>generate-sources</version.update.enable>
+        <version.phase>none</version.phase>
+        <service.name>-invalid-</service.name>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.7</version>
+                <executions>
+                    <execution>
+                        <phase>${version.phase}</phase>
+                        <goals>
+                            <goal>set</goal>
+                        </goals>
+                        <id>update-version</id>
+                        <configuration>
+                            <generateBackupPoms>false</generateBackupPoms>
+                            <artifactId>${service.name}*</artifactId>
+                            <newVersion>${service.version}</newVersion>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
