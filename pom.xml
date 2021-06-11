@@ -58,4 +58,16 @@
     <scm>
         <connection>scm:git:git@github.com:allout58/spring-versioning.git</connection>
     </scm>
+    <distributionManagement>
+        <repository>
+            <id>deployment</id>
+            <name>Internal Releases</name>
+            <url>https://nexus.devops-ci/repository/maven-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>deployment</id>
+            <name>Internal Releases</name>
+            <url>https://nexus.devops-ci/repository/maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
